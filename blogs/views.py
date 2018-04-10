@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -24,7 +24,7 @@ def posts(request):
 @login_required
 def post(request, post_id):
     """Show the post's contents"""
-    post = BlogPost.objects.get(id=post_id)
+    post = get_object_or_404(BlogPost, id=post_id)
     context = {'post' : post}
     return render(request, 'blogs/post.html', context)
 
@@ -51,7 +51,7 @@ def add_post(request):
 @login_required
 def edit_post(request, post_id):
     """Edit existing post"""
-    post = BlogPost.objects.get(id=post_id)
+    post = get_object_or_404(BlogPost, id=post_id)
     check_post_owner(request.user, post.owner)
     if request.method != 'POST':
         # Initial request; pre-fill form with existing data.
