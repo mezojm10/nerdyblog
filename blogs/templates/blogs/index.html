@@ -1,0 +1,13 @@
+{% extends "blogs/base.html" %}
+
+{% block header %}
+  <div class="jumbotron">
+    <h1>Stay up to date.</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'bloggers:register' %}">Register an account</a> to view the blog.
+  </h2>
+{% endblock content %}

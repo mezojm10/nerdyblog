@@ -1,0 +1,2 @@
+Ensures that Blog/static will be added to the project.
+Django will collect static files and put them in Blog/static/.
