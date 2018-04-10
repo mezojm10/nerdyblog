@@ -1,4 +1,5 @@
 {% extends "blogs/base.html" %}
+{% load bootstrap3 %}
 
 {% block header %}
   <div class="jumbotron">
@@ -8,6 +9,27 @@
 
 {% block content %}
   <h2>
+  {% if user.is_authenticated %}
+    {% for post in posts %}
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <a href="{% url 'blogs:post' post.id %}">{{ post }}</a>
+      </div>
+      <div class="panel-body">
+        {{ post.text|linebreaks }}
+      </div>
+    </div>
+    <hr>
+    {% empty %}
+      No posts have been added yet.
+    {% endfor %}
+  <a href="{% url 'blogs:posts' %}">
+    {% buttons %}
+      <button class="btn btn-primary">All Posts</button>
+    {% endbuttons %}
+  </a>
+  {% else %}
     <a href="{% url 'bloggers:register' %}">Register an account</a> to view the blog.
+  {% endif %}
   </h2>
 {% endblock content %}

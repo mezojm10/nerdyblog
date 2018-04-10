@@ -10,9 +10,11 @@
     <div class="panel-heading">
       <h3>
         {{ post.date_added|date:'M d, Y H:i' }}
-        <small>
-          <a href="{% url 'blogs:edit_post' post.id %}">edit post</a>
-        </small>
+        {% if owner == user %}
+          <small>
+            <a href="{% url 'blogs:edit_post' post.id %}">edit post</a>
+          </small>
+        {% endif %}
       </h3>
     </div>
   </div>
@@ -22,7 +24,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <h3>
-        {{ post.text }}
+        {{ post.text|linebreaks }}
       </h3>
     </div>
   </div> <!-- panel -->

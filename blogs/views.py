@@ -10,7 +10,9 @@ from .forms import PostForm, ContentForm
 
 def index(request):
     """Show the home page"""
-    return render(request, 'blogs/index.html')
+    posts = BlogPost.objects.all()
+    context = {'posts' : posts[:3]}
+    return render(request, 'blogs/index.html', context)
 
 
 @login_required
@@ -25,7 +27,8 @@ def posts(request):
 def post(request, post_id):
     """Show the post's contents"""
     post = get_object_or_404(BlogPost, id=post_id)
-    context = {'post' : post}
+    owner = post.owner
+    context = {'post' : post, 'owner' : owner}
     return render(request, 'blogs/post.html', context)
 
 
