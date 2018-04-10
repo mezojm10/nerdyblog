@@ -8,6 +8,7 @@ class BlogPost(models.Model):
     text = models.TextField()
     date_added = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    public = models.BooleanField(default=True)
 
     def __str__(self):
         """Return a string representation of the model."""
