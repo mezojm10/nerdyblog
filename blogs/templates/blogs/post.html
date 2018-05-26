@@ -1,4 +1,4 @@
-{% extends 'blogs/base.html' %}
+{% extends 'blogs/base_blogs.html' %}
 
 {% block header %}
   <div class="panel panel-default">
@@ -10,9 +10,12 @@
     <div class="panel-heading">
       <h3>
         {{ post.date_added|date:'M d, Y H:i' }}
-        {% if owner == user %}
+        {% if post.owner == user %}
           <small>
-            <a href="{% url 'blogs:edit_post' post.id %}">edit post</a>
+            <a href="{{ post.get_update_url }}">edit post</a>
+          </small>
+          <small>
+            <a href="{{ post.get_delete_url }}">delete post</a>
           </small>
         {% endif %}
       </h3>
@@ -28,5 +31,5 @@
       </h3>
     </div>
   </div> <!-- panel -->
-  
+
 {% endblock content %}

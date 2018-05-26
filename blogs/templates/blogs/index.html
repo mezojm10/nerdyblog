@@ -1,4 +1,4 @@
-{% extends "blogs/base.html" %}
+{% extends "blogs/base_blogs.html" %}
 {% load bootstrap3 %}
 
 {% block header %}
@@ -13,7 +13,7 @@
     {% for post in posts %}
     <div class="panel panel-info">
       <div class="panel-heading">
-        <a href="{% url 'blogs:post' post.id %}">{{ post }}</a>
+        <a href="{{ post.get_absolute_url }}">{{ post }}</a>
       </div>
       <div class="panel-body">
         {{ post.text|linebreaks }}

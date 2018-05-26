@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party apps
     'bootstrap3',
-    'bootstrap4',
     # My apps
     'blogs',
     'bloggers',
@@ -60,7 +59,7 @@ ROOT_URLCONF = 'Blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Blog/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,11 +129,6 @@ LOGIN_URL = '/bloggers/login/'
 
 # Settings for django-bootstrap3
 BOOTSTRAP3 = {
-    'include_jquery' : True,
-}
-
-# Settings for django-bootstrap4
-BOOTSTRAP4 = {
     'include_jquery' : True,
 }
 

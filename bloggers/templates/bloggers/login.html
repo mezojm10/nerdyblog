@@ -1,4 +1,4 @@
-{% extends 'blogs/base.html' %}
+{% extends 'bloggers/base_bloggers.html' %}
 {% load bootstrap3 %}
 
 {% block header %}
@@ -15,6 +15,6 @@
       <button name="submit" class="btn btn-primary">log in</button>
     {% endbuttons %}
 
-    <input type="hidden" name="next" value="{% url 'blogs:index' %}"> 
+    <input type="hidden" name="next" value="{% url 'blogs:index' %}">
   </form>
 {% endblock content %}

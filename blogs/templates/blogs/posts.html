@@ -1,4 +1,4 @@
-{% extends "blogs/base.html" %}
+{% extends "blogs/base_blogs.html" %}
 
 {% block header %}
   <h1>Posts</h1>
@@ -10,7 +10,7 @@
     {% for post in posts %}
       <li>
         <h3>
-          <a href="{% url 'blogs:post' post.id %}">{{ post }}</a>
+          <a href="{{ post.get_absolute_url }}">{{ post }}</a>
         </h3>
       </li>
     {% empty %}

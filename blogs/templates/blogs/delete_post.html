@@ -1,0 +1,22 @@
+{% extends "blogs/base_blogs.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Delete Post <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+{% endblock %}
+
+{% block content %}
+
+  <form action="{{ post.get_delete_url }}" method="POST" class="form">
+    {% csrf_token %}
+
+    {% buttons %}
+      <a href="{{ post.get_absolute_url }}">
+        <button type="button" class="btn btn-primary"> Cancel</button>
+      </a>
+      <button name="submit" class="btn btn-primary">Delete Post</button>
+    {% endbuttons %}
+
+  </form>
+
+{% endblock %}
