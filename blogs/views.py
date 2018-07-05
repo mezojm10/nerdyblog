@@ -2,16 +2,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.views.generic import View
 
-from .forms import ContentForm, PostForm
+from .forms import PostForm
 from .models import BlogPost
 
 
 def index(request):
     """Show the home page"""
     posts = BlogPost.objects.all()
-    context = {'posts' : posts[:3]}
+    context = {'posts': posts[:3]}
     return render(request, 'blogs/index.html', context)
 
 
@@ -19,7 +18,7 @@ def index(request):
 def posts(request):
     """Show all posts."""
     posts = BlogPost.objects.order_by('-date_added')
-    context = {'posts' : posts}
+    context = {'posts': posts}
     return render(request, 'blogs/posts.html', context)
 
 
@@ -27,8 +26,7 @@ def posts(request):
 def post(request, post_id):
     """Show the post's contents"""
     post = get_object_or_404(BlogPost, id=post_id)
-    owner = post.owner
-    context = {'post' : post}
+    context = {'post': post}
     return render(request, 'blogs/post.html', context)
 
 
@@ -91,6 +89,7 @@ def delete_post(request, post_id):
         check_post_owner(request.user, post.owner)
         post.delete()
         return HttpResponseRedirect(reverse('blogs:posts'))
+
 
 def check_post_owner(curr_user, owner):
     if curr_user != owner:
